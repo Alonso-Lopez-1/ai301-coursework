@@ -58,6 +58,22 @@ recording `reject` for the issue you chose earns no credit for this field.
 
 ```
 paste the output here, including the closing JSON block
+   {
+     "item": "https://github.com/codepath/pathreview-ai301-fa26-s3/issues/63",
+     "checks": [
+       {"name": "Maintainer activity", "grade": "pass",
+        "evidence": "Last default-branch commit 2026-09-16 by human Aburke225, 4 days before today (2026-09-20), within 90 days"},
+       {"name": "Repository in use", "grade": "pass",
+        "evidence": "isArchived: false and pushedAt 2026-09-16, a push within the last 12 months"},
+       {"name": "Newcomer-sized scope", "grade": "pass",
+        "evidence": "One diagnosed bug with repro: fixture has ~51 words but test asserts word_count > 100; labeled 'good first issue' and 'tier-1'"},
+       {"name": "Availability", "grade": "pass",
+        "evidence": "assignees: [], no linked PRs in the issue timeline, zero comments, and the repo has no PRs at all"},
+       {"name": "Contribution policy", "grade": "pass",
+        "evidence": "docs/CONTRIBUTING.md and .github/PULL_REQUEST_TEMPLATE.md contain no AI-contribution restriction; silence passes"}
+     ],
+     "verdict": "accept"
+   }
 ```
 
 ---
