@@ -19,35 +19,13 @@ https://github.com/codepath/pathreview-ai301-fa26-s3/issues/63
 
 **Verdict output**
 
-  ┌──────────────────┬───────┬────────────────────────────────────────────────────────────────────────────────────────────────────┐
-  │      Check       │ Grade │                                              Evidence                                              │
-  ├──────────────────┼───────┼────────────────────────────────────────────────────────────────────────────────────────────────────┤
-  │ Maintainer       │ pass  │ Last main commit 2026-09-16 by human Aburke225 ("chore: track five more manifest entries…") — 4    │
-  │ activity         │       │ days before today (2026-09-20), well inside 90 days                                                │
-  ├──────────────────┼───────┼────────────────────────────────────────────────────────────────────────────────────────────────────┤
-  │ Repository in    │ pass  │ isArchived: false, pushedAt: 2026-09-16 — push within 12 months (no releases, but the push arm     │
-  │ use              │       │ satisfies the OR)                                                                                  │
-  ├──────────────────┼───────┼────────────────────────────────────────────────────────────────────────────────────────────────────┤
-  │ Newcomer-sized   │       │ One diagnosed bug with a repro: test_readme_with_all_quality_signals asserts word_count > 100      │
-  │ scope            │ pass  │ against a ~51-word fixture; pytest tests/unit/test_readme_scorer.py -q → assert 51 > 100. Labeled  │
-  │                  │       │ good first issue, tier-1                                                                           │
-  ├──────────────────┼───────┼────────────────────────────────────────────────────────────────────────────────────────────────────┤
-  │ Availability     │ pass  │ assignees: [], no linked PRs in the issue timeline (only 4 LabeledEvents), zero comments, and the  │
-  │                  │       │ repo has no PRs open or closed at all                                                              │
-  ├──────────────────┼───────┼────────────────────────────────────────────────────────────────────────────────────────────────────┤
-  │ use              │       │ satisfies the OR)                                                                                  │
-  ├──────────────────┼───────┼────────────────────────────────────────────────────────────────────────────────────────────────────┤
-  │ Newcomer-sized   │       │ One diagnosed bug with a repro: test_readme_with_all_quality_signals asserts word_count > 100      │
-  │                  │       │ good first issue, tier-1                                                                           │
-  ├──────────────────┼───────┼────────────────────────────────────────────────────────────────────────────────────────────────────┤
-  │ Availability     │ pass  │ assignees: [], no linked PRs in the issue timeline (only 4 LabeledEvents), zero comments, and the  │
-  ├──────────────────┼───────┼────────────────────────────────────────────────────────────────────────────────────────────────────┤
-  │ Availability     │ pass  │ assignees: [], no linked PRs in the issue timeline (only 4 LabeledEvents), zero comments, and the  │
-  │ Availability     │ pass  │ assignees: [], no linked PRs in the issue timeline (only 4 LabeledEvents), zero comments, and the  │
-  ├──────────────────┼───────┼────────────────────────────────────────────────────────────────────────────────────────────────────┤
-  │ Contribution     │ pass  │ docs/CONTRIBUTING.md and .github/PULL_REQUEST_TEMPLATE.md say nothing about AI, assistants, or     │
-  │ policy           │       │ generated code — silence passes                                                                    │
-  └──────────────────┴───────┴────────────────────────────────────────────────────────────────────────────────────────────────────┘
+| Check | Grade | Evidence |
+|---|---|---|
+| Maintainer activity | `pass` | Last main commit was `2026-09-16` by human contributor `Aburke225` ("chore: track five more manifest entries…"), 4 days before the run date (`2026-09-20`), which is well within 90 days. |
+| Repository in use | `pass` | `isArchived: false` and `pushedAt: 2026-09-16`, so the repository had a push within the last 12 months. No release is required because the push condition satisfies the rule. |
+| Newcomer-sized scope | `pass` | One diagnosed bug with a clear reproduction: `test_readme_with_all_quality_signals` asserts `word_count > 100` against a ~51-word fixture. Running `pytest tests/unit/test_readme_scorer.py -q` produces `assert 51 > 100`. The issue is also labeled `good first issue` and `tier-1`. |
+| Availability | `pass` | `assignees: []`, no linked PRs appear in the issue timeline, there are zero comments, and the repository has no PRs open or closed. |
+| Contribution policy | `pass` | `docs/CONTRIBUTING.md` and `.github/PULL_REQUEST_TEMPLATE.md` contain no restrictions on AI, assistants, or generated code, so the policy check passes. |
 
   Accepted, and a good fit for your profile: it's a Python/pytest change in an unfamiliar codebase, requiring you to read the scorer's actual behavior
   to decide whether the fixture or the assertion is wrong — bounded, no core internals, no architecture. Note the PR template's checkbox about removing
