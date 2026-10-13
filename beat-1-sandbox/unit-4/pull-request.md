@@ -15,45 +15,34 @@ label is not graded.
 
 **Pull request**
 
-[Link to the pull request you opened. It must be the pull request's own page on the Path
-Review repo, not your fork's branch page.]
+https://github.com/codepath/pathreview-ai301-fa26-s3/pull/198
 
 **Branch**
 
-[The name of the branch the pull request comes from, exactly as it appears in your fork.
-The naming shape is a type prefix, then the issue number, then a short description. **The
-issue number in the branch name must be the number of the issue the pull request fixes** —
-a name carrying any other number does not satisfy this field.]
+`reproduce-issue-63`
 
 ## Eval iterations
 
-Answer all four sections. Quote source text directly; paraphrase does not satisfy these
-fields.
-
 **Run history**
 
-[The agreement score of each run you did, in order. A single run is a complete answer if
-only one run occurred. **The last score in your list must match the agreement line in the
-`eval-run.txt` you committed** — that file is the record of your final run.]
+- Run 1: **16/20** 
+- Run 2: **20/20** 
 
 **Package analysis**
 
-[Pick one scored package (`pkg-01` through `pkg-20` — the four `calib-` packages are never
-scored). Name it by id, say what your rubric decided and what the gold label said, and
-explain why your rubric read it that way.]
+`pkg-03` — **Rubric verdict: reject. Gold label: reject.** The candidate Starship PR claimed to implement the posted plan exactly, but its diff also introduced a `resolve_symlinks` configuration option and rewrote the truncation helper, despite the plan's boundary excluding a configuration change. The Plan fidelity check rejects material unplanned additions, even when the central fix itself is plausible. The decisive distinction is the **diff compared against the accepted plan**, not the confidence of the PR description.
 
 **Check rationale**
 
-[Quote one check from the `rubric.md` you uploaded to `tools/pr-precheck/`, exactly as it reads now.
-Then say why it reads that way — what you revised to get there, or what you rejected in
-favour of it.]
+Verbatim check from `tools/pr-precheck/rubric.md`:
+
+> | Plan fidelity | Candidate diff's changed files and behavior against the plan-context scope, exclusions, intended implementation, issue, and documented deviations | All material changes serve the issue and fit the planned boundary or explicitly explained deviations; significant omissions are accurately disclosed. Unexplained additions or omissions fail. Disclosing unrelated drive-by changes does not make them in scope. | required |
+
+This check is required because a PR can correctly implement its main fix while quietly introducing additional changes or omitting promised work. Comparing actual changed files and behavior against the plan's boundaries catches such drift, including the changes in `pkg-03`. Its wording also permits an explained, issue-relevant deviation without allowing disclosure alone to excuse unrelated edits. I cannot verify whether this precise wording was revised between the two reported evaluation attempts.
 
 **Trade-offs**
 
-[Every check gives something up. Any one of these is a complete answer: a package whose
-result it changes, a canary you re-ran with `--only`, a case you accept it will miss, or a
-stated reason nothing changed elsewhere. "Nothing changed, and here is how I know" earns
-the point in full when the reason follows.]
+Making Plan fidelity a required check favors a narrowly reviewable PR over approving every technically plausible addition. It changes the outcome for a package such as `pkg-03`: the symlink fix may address the issue, but the extra configuration option and helper rewrite still require rejection under the recorded plan. The trade-off is that useful adjacent improvements may need a separate PR or an explicitly documented, issue-relevant deviation. This is intentional; the PR being evaluated is the implementation of a *specific agreed plan*, rather than a general opportunity to improve surrounding code. No `--only` canary rerun or specific post-run rubric revision is claimed because neither is documented in the available record.
 
 ---
 
